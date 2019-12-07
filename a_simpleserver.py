@@ -2,6 +2,12 @@
 #  python -m flask run
 # use week 5 as a reference
 from flask import Flask, jsonify,  request, abort, make_response
+
+
+
+
+
+
 app = Flask(__name__, static_url_path='', static_folder='.')
 
 films=[{"id":1, "Title": "Harry Potter", "Director": "JK", "Price": 1000},
@@ -9,6 +15,10 @@ films=[{"id":1, "Title": "Harry Potter", "Director": "JK", "Price": 1000},
 {"id":3, "Title": "Something Steamy", "Director": "Jackie Collins", "Price": 1100}]
 
 NextId = 4
+
+@app.route("/")
+def index():
+    return "<h1>Hello Azure!</h1>"
 #@app.route('/')
 #def hello_world():
 #    return 'Hello, World!'
