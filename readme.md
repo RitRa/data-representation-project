@@ -1,10 +1,16 @@
-Hosted on Azure
+
+To run this app you will need: Flask and PyMYsql
+
+```
+python3 -m pip install PyMySQL
+```
+
+### Hosted on Azure
 
 https://ritasapp.azurewebsites.net/
 
-followed thi tutorial
+I followed this tutorial
 
 https://github.com/smartninja/example-azure-flask
 
-I used PyMYsql
-python3 -m pip install PyMySQL
+
