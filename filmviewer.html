@@ -4,10 +4,15 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+   
+     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
     </head>
     <body>
         <h1>Films</h1>
-        <div> <button id="showCreateButton" onclick="showCreate()">Create</button></div>
+
+        <div> <button id="showCreateButton"  class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" onclick="showCreate()">Create</button></div>
         <div>
             <table class="table" id="filmTable">
                 <tr>
@@ -21,20 +26,46 @@
 
             </table>
         </div>
-        <div id='createUpdateForm' style="display: none">
-                <h2><span id="createLabel">Create a</span> <span id="updateLabel">update</span> film</h2>
-               <input type="hidden" name="id">
-               Title <input type="text" name="title"/> <br/>
-               Director <input type="text" name="director"/> <br/>
-               Year<input type="number" name="year" placeholder="YYYY" min="1900" max="2019"/> <br/>
-                <span><button id="doCreateButton" onclick="doCreate()">Create</button></span>
-                <span><button id="doUpdateButton" onclick="doUpdate()">Update</button></span>
+        <div>
+        
+<div class="mdc-card" id="filmCard">
+<h1></h1>
+</div>
         </div>
+        <div id='createUpdateForm' style="display: none" class="col-md-6">
+                <h3 class="heading"><span id="createLabel">Create a</span> <span id="updateLabel">Update</span> film</h3>
+             
+             <form action="">
+               <input type="hidden" name="id">
+
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" name="title" class="form-control" placeholder="Enter title">
+                </div>
+                <div class="form-group">
+                    <label for="director">Director</label>
+                    <input type="text" name="director" class="form-control" >
+                </div>
+                <div class="form-group">
+                    <label for="year">Year</label>
+                    <input type="text" name="year" class="form-control" placeholder="YYYY" min="1900" max="2019">
+                </div>
+
+           <!--  Title <input type="text" name="title"/> <br/>
+               Director <input type="text" name="director"/> <br/>
+               Year<input type="number" name="year" placeholder="YYYY" min="1900" max="2019"/> <br/>-->
+                <span><button id="doCreateButton" class="mdc-button mdc-button--outlined" onclick="doCreate()">Create</button></span>
+                <span><button id="doUpdateButton" class="mdc-button mdc-button--outlined" onclick="doUpdate()">Update</button></span>
+                </form>
+        </div>
+
+        
     </body>
     <script>
     function showCreate(){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('filmTable').style.display="none"
+         document.getElementById('filmCard').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
         document.getElementById('createLabel').style.display="inline"
         document.getElementById('updateLabel').style.display="none"
@@ -44,11 +75,13 @@
     function showViewAll(){
         document.getElementById('showCreateButton').style.display="block"
         document.getElementById('filmTable').style.display="block"
+        document.getElementById('filmCard').style.display="block"
         document.getElementById('createUpdateForm').style.display="none"
     }
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('filmTable').style.display="none"
+        document.getElementById('filmCard').style.display="none"
         document.getElementById('createUpdateForm').style.display="block"
         document.getElementById('createLabel').style.display="none"
         document.getElementById('updateLabel').style.display="inline"
@@ -104,10 +137,12 @@
         var cell4 = rowElement.insertCell(3);
         cell4.innerHTML = film.year
         var cell5 = rowElement.insertCell(4);
-        cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
+        cell5.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
-        cell6.innerHTML = '<button onclick=doDelete(this)>delete</button>'
+        cell6.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick=doDelete(this)>delete</button>'
     }
+
+ 
     function clearForm(){
         var form = document.getElementById('createUpdateForm')
         form.querySelector('input[name="title"]').value=''

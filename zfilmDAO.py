@@ -1,16 +1,18 @@
 import pymysql.cursors
+
+import config as cfg
 # data access object
 class FilmDAO:
     db=""
 
     def __init__(self):
         self.db = pymysql.connect(
-        host="localhost",
-        user="root",
-        password="Password!",
+        host=cfg.pymysql['host'],
+        user=cfg.pymysql['user'],
+        password=cfg.pymysql['password'],
         #user="datarep", # this is the user name on my mac
         #passwd="password" # for my mac
-        database="filmdb"
+        database=cfg.pymysql['database']
         )
 
     def create(self, values):
