@@ -187,8 +187,9 @@
     }
 
     function getAllAjax(){
+        host = window.location.origin
         $.ajax({
-            "url": "http://127.0.0.1:5000/films",
+            "url": host + "/films",
             "method":"GET",
             "data":"",
             "dataType": "JSON",
@@ -208,8 +209,9 @@
        
         //console.log("hello");
         console.log(JSON.stringify(film));
+         host = window.location.origin
         $.ajax({
-            "url": "http://127.0.0.1:5000/films",
+            "url": host + "/films",
             "method":"POST",
             "data":JSON.stringify(film),
             "dataType": "JSON",
@@ -231,8 +233,9 @@
     function updatefilmAjax(film){
       
         console.log(JSON.stringify(film.id));
+         host = window.location.origin
         $.ajax({
-            "url": "http://127.0.0.1:5000/films/"+encodeURI(film.id),
+            "url": host +"/films/"+encodeURI(film.id),
             "method":"PUT",
             "data":JSON.stringify(film),
             "dataType": "JSON",
@@ -249,8 +252,9 @@
     function deletefilmAjax(id){
         //var car = {"reg":"12 D 1234"}
         console.log(JSON.stringify(film));
+         host = window.location.origin
         $.ajax({
-            "url": "http://127.0.0.1:5000/films/"+encodeURI(id),
+            "url": host +"/films/"+encodeURI(id),
             "method":"DELETE",
             "data":"",
             "dataType": "JSON",
