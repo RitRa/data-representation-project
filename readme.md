@@ -14,3 +14,5 @@ I followed this tutorial
 https://github.com/smartninja/example-azure-flask
 
 
+https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/
+

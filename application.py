@@ -1,8 +1,9 @@
-# export FLASK_APP=a_simpleserver.py
-#  python -m flask run
+# export FLASK_APP=application.py
+# python -m flask run
 # use week 5 as a reference
-from flask import Flask, jsonify,  request, abort, make_response
+from flask import Flask, jsonify, request, abort, make_response, render_template, redirect, url_for
 from zfilmDAO import filmDAO
+from zUserDAO import userDAO
 
 app = Flask(__name__, static_url_path='', static_folder='.')
 
@@ -11,11 +12,32 @@ app = Flask(__name__, static_url_path='', static_folder='.')
 def hello_world():
     return 'Hello, Rita!'
 
-# curl "http://127.0.0.1:5000/films/124"
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['email'] != '' or request.form['password'] != '':
+            # passing the email and password to the DAO
+            email = request.form['email']
+            password = request.form['password']
+            foundUser = userDAO.checkUser(email, password)
+            # if the user is not in the database, throw the erro
+            if not foundUser:
+                error = 'Invalid Credentials. Please try again.'
+            # if the user exists then navigate to the films page    
+            else:
+                return redirect(url_for('filmviewer'))
+        else:
+            return error
+    return render_template('login.html', error=error)
+
+
+@app.route('/filmviewer')
+def filmviewer():
+    return render_template('filmviewer.html')
 
 @app.route('/films')
-
 # curl "http://127.0.0.1:5000/films"
 def getAll():
     results = filmDAO.getAll()
@@ -53,8 +75,6 @@ def create():
 
 # curl -i -H "Content-Type:application/json" -X PUT -d  '{ "Title":"me" }' http://127.0.0.1:5000/films/1
 
-
-# not working video  finish server to DB 8mins   
 # curl -i -H "Content-Type:application/json" -X PUT -d  '{"year":1999}' http://127.0.0.1:5000/films/4
 @app.route('/films/<int:id>',methods=['PUT'])
 def update(id):
@@ -69,7 +89,6 @@ def update(id):
     reqJson = request.json
     #if 'price' in reqJson and type(reqJson['price']) is not int:
       #  abort(400)
-
     if "title" in reqJson:
         foundFilm["title"]= request.json["title"]
     
@@ -85,10 +104,7 @@ def update(id):
     return jsonify(foundFilm)
 
 
-
-
 #  curl -X DELETE http://127.0.0.1:5000/films/4
-
 @app.route('/films/<int:id>',methods=['DELETE'])
 def delete(id):
     filmDAO.delete(id) 

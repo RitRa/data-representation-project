@@ -7,7 +7,6 @@ show tables;
 create table film (
 id int NOT NULL auto_increment,
 title varchar(250),
-
 director varchar(250),
 year YEAR,
 PRIMARY KEY(id)
@@ -20,4 +19,17 @@ insert into film (title, director, year) values ("Requiem for a Dream", "Darren 
 
 select * from film;
 
-DROP table film;
+create table usertable (
+id int NOT NULL auto_increment,
+name varchar(250),
+email varchar(250),
+password varchar(250),
+PRIMARY KEY(id)
+);
+
+select * from usertable;
+
+insert into usertable (name, email, password) values ("Rita", "ritaraher@gmail.com", "MMAA");
+
+
+drop table usertable;
