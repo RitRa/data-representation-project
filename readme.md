@@ -46,6 +46,6 @@ An update feature using Jquery, PyMySQL, REST API and AJAX calls.
 
 An delete function that removes the film from the database.
 
-The Search is hooked in to a third party api www.omdbapi.com and returns search results from the api. The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by our users.
+The Search is hooked in to a third party api www.omdbapi.com and returns search results from the api. The OMDb API is a RESTful web service to obtain movie information, all content and images on the site are contributed and maintained by their users.
 
 ![Update](images/searchfilm.png)
