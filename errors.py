@@ -4,5 +4,5 @@ from zUserDAO import userDAO
 from application import app
 
 @app.errorhandler(404)
-def not_found_error(error):
-    return render_template('404.html'), 404
+def page_not_found(error):
+   return render_template('404.html', title = '404'), 404

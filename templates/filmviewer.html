@@ -51,9 +51,6 @@
                     <input type="text" name="year" class="form-control" placeholder="YYYY" min="1900" max="2019">
                 </div>
 
-           <!--  Title <input type="text" name="title"/> <br/>
-               Director <input type="text" name="director"/> <br/>
-               Year<input type="number" name="year" placeholder="YYYY" min="1900" max="2019"/> <br/>-->
                 <span><button id="doCreateButton" class="mdc-button mdc-button--outlined" onclick="doCreate()">Create</button></span>
                 <span><button id="doUpdateButton" class="mdc-button mdc-button--outlined" onclick="doUpdate()">Update</button></span>
                 </form>
@@ -92,17 +89,15 @@
         var film = getfilmFromRow(rowElement)
         populateFormWithfilm(film)
     }
-    function viewFilm(buttonElement){
-         document.getElementById('showCreateButton').style.display="none"
-        document.getElementById('filmTable').style.display="none"
-        document.getElementById('createUpdateForm').style.display="block"
-        document.getElementById('createLabel').style.display="none"
-        document.getElementById('updateLabel').style.display="inline"
-        document.getElementById('doCreateButton').style.display="none"
-        document.getElementById('doUpdateButton').style.display="block"
-        var rowElement = buttonElement.parentNode.parentNode
-        var film = getfilmFromRow(rowElement)
-        console.log(film)
+    function viewFilm(r){
+ 
+        var tableElement = document.getElementById('filmTable');
+        var rowElement = r.parentNode.parentNode;
+        var index = rowElement.rowIndex;
+        viewfilmAjax(rowElement.getAttribute("title"));
+        //tableElement.deleteRow(index);
+    
+        //console.log(film)
        
     }
     function doCreate(){
@@ -153,7 +148,7 @@
         var cell6 = rowElement.insertCell(5);
         cell6.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick=doDelete(this)>delete</button>'
         var cell7 = rowElement.insertCell(6);
-        cell7.innerHTML = ' <form action="" method="post" style="display:inline-block"><button class="mdc-button mdc-button--outlined" name="viewdetail" onclick="viewFilm(this)" type="submit"> View</button></form>'
+        cell7.innerHTML = '<button class="mdc-button mdc-button--outlined" name="viewdetail" onclick="viewFilm(this)" type="submit"> View</button>'
    
     }
 
@@ -276,6 +271,25 @@
             contentType: "application/json; charset=utf-8",
             "success":function(result){
                 //console.log(result);
+
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function viewfilmAjax(title){
+        console.log(JSON.stringify(film));
+        console.log(JSON.stringify(film.title));
+        host = window.location.origin
+        $.ajax({
+            "url": host +"/films"+"?title=" +encodeURI(film.title),
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                console.log(result);
 
             },
             "error":function(xhr,status,error){

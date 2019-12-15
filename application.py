@@ -37,17 +37,12 @@ def login():
 def filmviewer():
         return render_template('filmviewer.html')
 
-""" 
-@app.route('/filmdetail')
-def filmdetail(id):
-     if request.method == 'GET':
-         if request.form['email'] != '' or request.form['password'] != '':
-            foundFilm = filmDAO.findByID(id) 
-            if not foundFilm:
-                 error="Film not found"
-            else:
-                return redirect(url_for('/filmdetail')) """
 
+@app.route('/filmviewer', methods=['GET', 'POST'])
+def filmdetail():
+     if request.method == 'GET':
+         if request.form['title'] != '':
+            print("Hello, Rita")
 
 
 
@@ -61,7 +56,9 @@ def getAll():
 # curl "http://127.0.0.1:5000/films/2"
 @app.route('/films/<int:id>')
 def findById(id):
-    foundFilm = filmDAO.findByID(id) 
+    foundFilm = filmDAO.findByID(id)
+    if not foundFilm:
+        abort(400) 
 
     return jsonify(foundFilm)
 
