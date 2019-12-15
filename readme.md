@@ -1,14 +1,4 @@
-
-
-### Hosted on Azure
-
-https://ritasapp.azurewebsites.net/
-
-I followed this tutorial
-
-https://github.com/smartninja/example-azure-flask
-
-
+### Big Project: Data Rep
 
 For this project I used: Flask, PyMySQL, Jquery, REST API, AJAX call and linking to a third party API.
 
@@ -29,10 +19,8 @@ Material Design: https://material.io/develop/
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 ```
 
-### The site is hosted on https://www.pythonanywhere.com/
+### The site is hosted on pythonanywhere: http://rraher.pythonanywhere.com/login
 
-
-http://rraher.pythonanywhere.com/login
 
 #### To login 
 
