@@ -59,3 +59,18 @@ The Search is hooked in to a third party api www.omdbapi.com and returns search 
 http://rraher.pythonanywhere.com/film/search/Am%C3%A9lie
 
 ![Update](images/searchfilm.png)
+
+
+The project contains 3 DAO files
+
+- zfilmDAO.py
+
+Contains sql queries to the film table
+
+- zUserDAO.py
+
+Contains sql queries to the user table
+
+- zfilmdatabaseDAO.py
+
+Contains api calls to www.omdbapi.com
