@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="78px" height="66px" viewBox="0 0 78 66" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>Artboard</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Artboard" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <polyline id="Path" stroke="#6200EE" stroke-width="6" stroke-linejoin="bevel" points="3 66 3 2 75 2 75 56.0001201 13.2816501 56.0001201"></polyline>
+        <text id="Film-Club" font-family="Montserrat-Medium, Montserrat Medium" font-size="14" font-weight="normal" fill="#6200EE">
+            <tspan x="14" y="25">Film</tspan>
+            <tspan x="14" y="43">Club</tspan>
+        </text>
+    </g>
+</svg>

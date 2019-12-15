@@ -29,7 +29,8 @@ PRIMARY KEY(id)
 
 select * from usertable;
 
+SELECT * FROM usertable where email = 'ritaraher@gmail.com' AND password='MMAA';
+
 insert into usertable (name, email, password) values ("Rita", "ritaraher@gmail.com", "MMAA");
 
 
-drop table usertable;

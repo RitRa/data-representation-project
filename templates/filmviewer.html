@@ -10,11 +10,12 @@
 
     </head>
     <body>
+    <img src="images/logo.svg" alt="">
         <h1>Films</h1>
 
         <div> <button id="showCreateButton"  class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" onclick="showCreate()">Create</button></div>
-        <div>
-            <table class="table" id="filmTable">
+        <div style="margin-top:10px">
+            <table class="table" id="filmTable" class="mdl-data-table mdl-data-table_full mdl-js-data-table mdl-shadow--4dp">
                 <tr>
                         <th>id</th>
                         <th>Title</th>
@@ -22,6 +23,7 @@
                         <th>Year</th>
                         <th>Update</th>
                         <th>Delete</th>
+                        <th>View</th>
                 </tr>
 
             </table>
@@ -79,7 +81,6 @@
     function showUpdate(buttonElement){
         document.getElementById('showCreateButton').style.display="none"
         document.getElementById('filmTable').style.display="none"
-   
         document.getElementById('createUpdateForm').style.display="block"
         document.getElementById('createLabel').style.display="none"
         document.getElementById('updateLabel').style.display="inline"
@@ -90,6 +91,19 @@
 
         var film = getfilmFromRow(rowElement)
         populateFormWithfilm(film)
+    }
+    function viewFilm(buttonElement){
+         document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('filmTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+        document.getElementById('createLabel').style.display="none"
+        document.getElementById('updateLabel').style.display="inline"
+        document.getElementById('doCreateButton').style.display="none"
+        document.getElementById('doUpdateButton').style.display="block"
+        var rowElement = buttonElement.parentNode.parentNode
+        var film = getfilmFromRow(rowElement)
+        console.log(film)
+       
     }
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
@@ -138,6 +152,9 @@
         cell5.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
         cell6.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick=doDelete(this)>delete</button>'
+        var cell7 = rowElement.insertCell(6);
+        cell7.innerHTML = ' <form action="" method="post" style="display:inline-block"><button class="mdc-button mdc-button--outlined" name="viewdetail" onclick="viewFilm(this)" type="submit"> View</button></form>'
+   
     }
 
  
@@ -231,7 +248,7 @@
     function updatefilmAjax(film){
       
         console.log(JSON.stringify(film.id));
-         host = window.location.origin
+        host = window.location.origin
         $.ajax({
             "url": host +"/films/"+encodeURI(film.id),
             "method":"PUT",
