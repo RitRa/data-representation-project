@@ -29,6 +29,21 @@ Material Design: https://material.io/develop/
   <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
 ```
 
+### The site is hosted on https://www.pythonanywhere.com/
+
+
+http://rraher.pythonanywhere.com/login
+
+#### To login 
+
+```
+email: rita@gmail.com
+
+password: MMAA
+```
+
+
+
 ### Project Details
 
 The project consists of a login screen which check the database to see if the user exists and that the password and email address are correct before bringing the user to the main page. 
