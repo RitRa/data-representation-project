@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}{{ search['expr'] }} {% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <small>Search results</small>
+
+    {# {% searchfilm % #}      
+<h3 style="margin-top:10px;">{{searchfilm.Title}}   <small>IMDB Rating: {{searchfilm.Ratings.0.Value}}</samll></h3>
+  <small > {{searchfilm.Year}} | {{searchfilm.Genre}} | {{searchfilm.Runtime}} </small>
+<div class="row">
+  <div class="col-md-3">
+      <div class="Poster" style="background-image: url('{{searchfilm.Poster}}'); width: 264px;height: 393px;"></div>
+  </div>
+  <div class="col-md-6">
+    <p>{{searchfilm.Plot}} </p>
+    <p>Starring:  {{searchfilm.Actors}}</p>
+    <p>Directed by: {{searchfilm.Director}} </p>
+    <p>Written by: {{searchfilm.Writer}}</p>
+  </div>
+</div>
+
+
+{% endblock %}

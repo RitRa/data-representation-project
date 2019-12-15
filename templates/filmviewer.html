@@ -10,10 +10,19 @@
 
     </head>
     <body>
-    <img src="images/logo.svg" alt="">
-        <h1>Films</h1>
+   <nav class="navbar navbar-light bg-light">
+   <div class="container">
+     <a class="navbar-brand"><img src="../../images/logo.svg" alt="Film club logo" class="login-logo"></a>
+    
+    <form name="search" class="form-inline" action="javascript:window.open('/film/search/'+document.forms['search'].elements['expr'].value,'_self')">
+        <input class="form-control mr-sm-4"  name="expr" id="expr" value="" placeholder="Search film" required/>
+        <input class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" type="submit" value="search"/>
+    </form>
+  </div>
+</nav>
 
-        <div> <button id="showCreateButton"  class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" onclick="showCreate()">Create</button></div>
+ <div class="container">
+        <div> <button id="showCreateButton"  class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" style="margin-top:10px" onclick="showCreate()">Create</button></div>
         <div style="margin-top:10px">
             <table class="table" id="filmTable" class="mdl-data-table mdl-data-table_full mdl-js-data-table mdl-shadow--4dp">
                 <tr>
@@ -23,7 +32,7 @@
                         <th>Year</th>
                         <th>Update</th>
                         <th>Delete</th>
-                        <th>View</th>
+                        
                 </tr>
 
             </table>
@@ -56,7 +65,7 @@
                 </form>
         </div>
 
-        
+        </div>
     </body>
     <script>
     function showCreate(){
@@ -89,17 +98,7 @@
         var film = getfilmFromRow(rowElement)
         populateFormWithfilm(film)
     }
-    function viewFilm(r){
- 
-        var tableElement = document.getElementById('filmTable');
-        var rowElement = r.parentNode.parentNode;
-        var index = rowElement.rowIndex;
-        viewfilmAjax(rowElement.getAttribute("title"));
-        //tableElement.deleteRow(index);
-    
-        //console.log(film)
-       
-    }
+
     function doCreate(){
         var form = document.getElementById('createUpdateForm')
         var film = {}
@@ -147,8 +146,6 @@
         cell5.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick="showUpdate(this)">Update</button>'
         var cell6 = rowElement.insertCell(5);
         cell6.innerHTML = '<button class="mdc-button mdc-button--outlined" onclick=doDelete(this)>delete</button>'
-        var cell7 = rowElement.insertCell(6);
-        cell7.innerHTML = '<button class="mdc-button mdc-button--outlined" name="viewdetail" onclick="viewFilm(this)" type="submit"> View</button>'
    
     }
 
@@ -271,6 +268,7 @@
             contentType: "application/json; charset=utf-8",
             "success":function(result){
                 //console.log(result);
+               
 
             },
             "error":function(xhr,status,error){
@@ -278,25 +276,7 @@
             }
         });
     }
-    function viewfilmAjax(title){
-        console.log(JSON.stringify(film));
-        console.log(JSON.stringify(film.title));
-        host = window.location.origin
-        $.ajax({
-            "url": host +"/films"+"?title=" +encodeURI(film.title),
-            "method":"GET",
-            "data":"",
-            "dataType": "JSON",
-            contentType: "application/json; charset=utf-8",
-            "success":function(result){
-                console.log(result);
-
-            },
-            "error":function(xhr,status,error){
-                console.log("error: "+status+" msg:"+error);
-            }
-        });
-    }
+    
     getAllAjax();
 
 

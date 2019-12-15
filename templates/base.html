@@ -1,14 +1,32 @@
 <html>
     <head>
       {% if title %}
-      <title>{{ title }} - Microblog</title>
+      <title>{{ title }}</title>
       {% else %}
-      <title>Welcome to Microblog</title>
+      <title></title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+
       {% endif %}
     </head>
     <body>
-        <div>Microblog: <a href="/index">Home</a></div>
-        <hr>
+
+  <nav class="navbar navbar-light bg-light">
+  <div class="container">
+  <a class="navbar-brand"><img src="../../images/logo.svg" alt="Film club logo" class="login-logo"></a>
+   
+    <form name="search" class="form-inline" action="javascript:window.open('/film/search/'+document.forms['search'].elements['expr'].value,'_self')">
+    <input class="form-control mr-sm-4"  name="expr" id="expr" value="" placeholder="Search film" required/>
+    <input class="mdc-button mdc-button--unelevated demo-button-shaped mdc-ripple-upgraded" type="submit" value="search"/>
+  </form>
+  </div>
+</nav>
+    <div class="container">
+
+       
         {% block content %}{% endblock %}
+        </div>
     </body>
 </html>

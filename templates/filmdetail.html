@@ -1,15 +1,15 @@
-<html>
-    <head>
-        <title>View films</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% extends 'base.html' %}
 
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-   
-     <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+{% block header %}
+  <h1>{% block title %}{{ search['expr'] }} {% endblock %}</h1>
+{% endblock %}
 
-    </head>
-    <body>
-    testing
-    </body>
-    </html>
+{% block content %}
+  <h2>Film Details</h2>
+  <p><ul>
+    {% for f in films %}      
+      <li><a href="/film/{{ m['MovieId'] }}">{{ m['Title'] }}</a></li>
+    {% endfor %}
+    </ul>
+  </p>
+{% endblock %}
