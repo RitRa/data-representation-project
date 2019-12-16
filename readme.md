@@ -61,15 +61,11 @@ http://rraher.pythonanywhere.com/film/search/Am%C3%A9lie
 ![Update](images/searchfilm.png)
 
 
-The project contains 3 DAO files
+The project contains 2 DAO files
 
 - zfilmDAO.py
 
-Contains sql queries to the film table
-
-- zUserDAO.py
-
-Contains sql queries to the user table
+Contains sql queries to the film table and to the user table
 
 - zfilmdatabaseDAO.py
 

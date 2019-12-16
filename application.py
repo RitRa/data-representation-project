@@ -3,7 +3,7 @@
 # use week 5 as a reference
 from flask import Flask, jsonify, request, abort, make_response, render_template, redirect, url_for
 from zfilmDAO import filmDAO
-from zUserDAO import userDAO
+#from zUserDAO import userDAO
 from zfilmdatabaseDAO import filmdatabaseDAO
 
 app = Flask(__name__, static_url_path='', static_folder='.')
@@ -21,7 +21,7 @@ def login():
             # passing the email and password to the DAO
             email = request.form['email']
             password = request.form['password']
-            foundUser = userDAO.checkUser(email, password)
+            foundUser = filmDAO.checkUser(email, password)
             # if the user is not in the database, throw the error
             if not foundUser:
                 error = 'Invalid Credentials. Please try again.'

@@ -1,4 +1,4 @@
-import pymysql.cursors
+import pymysql
 
 import config as cfg
 # data access object
@@ -6,30 +6,39 @@ import config as cfg
 class UserDAO:
     db=""
 
-    def __init__(self):
+    def connectToBD(self):
         self.db = pymysql.connect(
-        host=cfg.pymysql['host'],
-        user=cfg.pymysql['user'],
-        password=cfg.pymysql['password'],
-        database=cfg.pymysql['database']
+            host=cfg.pymysql['host'],
+            user=cfg.pymysql['user'],
+            password=cfg.pymysql['password'],
+            database=cfg.pymysql['database']
         )
+
+    def __init__(self):
+        self.connectToBD()
+    
+    def getCursor(self):
+        if self.db.open:
+            self.connectToBD()
+        return self.db.cursor()
 
 
     
     def checkUser(self, email, password):
-        cursor = self.db.cursor()
+        cursor = self.getCursor()
         sql="SELECT * FROM usertable where email = %s and password=%s"
         values = (email, password)
         cursor.execute(sql, values)
         # Fetch one record and return result
         account = cursor.fetchone()
-        return self.convertToDictionary(account)
+        cursor.close
+        return self.convertToDictionary2(account)
        
         #result = cursor.fetchone()
         #ßprint(result)
         print("Hello Rita")
     
-    def convertToDictionary(self, account):
+    def convertToDictionary2(self, account):
         colnames=["id", "name", "email", "password"]
         print(colnames)
         item = {}
