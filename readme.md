@@ -6,7 +6,7 @@ For this project I used: Flask, PyMySQL, Jquery, REST API, AJAX call and linking
 python3 -m pip install PyMySQL
 ```
 
-I used a mixture of Bootstrap and Material design for the layout and styling.
+I used a mixture of Bootstrap and Material design for the layout and styling via CDN.
 
 Bootstrap: https://getbootstrap.com/
 
